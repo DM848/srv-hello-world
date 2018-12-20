@@ -1,4 +1,4 @@
-interface {{ service.name.Capitalize().LettersOnly() }}Interface {
+interface HelloWorldInterface {
   RequestResponse:
     about(void)(string)
 }

@@ -16,11 +16,11 @@ execution { sequential }
 
 // The input port specifies how your service can be reached. However, since we use
 // Docker containers, the port here should not be set as it is exposed in the Dockerfile.
-inputPort {{ service.name.Capitalize().LettersOnly() }}Input {
-  Location: "socket://localhost:{{ service.port }}/"
+inputPort HelloWorldInput {
+  Location: "socket://localhost:8888/"
   Protocol: http
   Interfaces: 
-    {{ service.name.Capitalize().LettersOnly() }}Interface, 
+    HelloWorldInterface, 
     ServiceMeshInterface
 }
 
@@ -29,7 +29,7 @@ inputPort {{ service.name.Capitalize().LettersOnly() }}Input {
 // the service is started.
 init
 {
-    println@Console( "initialising {{ service.name }}")()
+    println@Console( "initialising hello-world")()
 }
 
 // incomming requests
@@ -40,13 +40,13 @@ main
     }]
     [ about()( resp ) {
         resp = "
-            The service {{ service.name }} was created at {{ service.createdAt }} by {{ service.author }}.
-            The source code can be found at https://github.com/dm848/srv-{{ service.name }}
-            While other services in the cluster (in the same namespace) can access it using the DNS name {{ service.name }}.
-            Remember to specify the cluster namespace, if you are in a different namespace: {{ service.name }}.default
+            The service hello-world was created at 2018-12-20 23:33:45.593103355 +0000 UTC m=+100.593970075 by my name.
+            The source code can be found at https://github.com/dm848/srv-hello-world
+            While other services in the cluster (in the same namespace) can access it using the DNS name hello-world.
+            Remember to specify the cluster namespace, if you are in a different namespace: hello-world.default
 
             Service Description
-            {{ service.desc }}
+            
         "
     }]
 }

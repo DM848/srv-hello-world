@@ -2,6 +2,6 @@ version: '3'
 
 services:
 
-  {{ service.name }}:
+  hello-world:
     build: .
-    image: dm848/srv-{{ service.name }}:v1
+    image: dm848/srv-hello-world:v1
